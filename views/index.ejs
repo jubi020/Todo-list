@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="box" id="heading">
+        <h1><%= weekDayName %></h1>
+    </div>
+    
+
+    <div class="box">
+        <form action="/delete" method="post">
+            <% newListItem.forEach((aListItem) => { %>
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= aListItem._id %>" onchange="this.form.submit()">
+                    <p> <%= aListItem.name %></p>
+                </div>
+
+            <% }) %>
+
+            <input type="hidden" name="listName" value="<%= weekDayName %>"></input>
+        </form>
+
+        <form class="item" action="/" method="post">
+            <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+            <button type="submit" name="listName" value="<%= weekDayName %>">+</button>
+        </form>
+    </div>
+
+    
+</body>
+</html>
